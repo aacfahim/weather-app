@@ -214,18 +214,22 @@ class _HomeState extends State<Home> {
                                       shape: RoundedRectangleBorder(
                                           borderRadius:
                                               BorderRadius.circular(20.0)),
-                                      child: Column(
-                                        children: [
-                                          Text(Jiffy(
-                                                  "${forecastMap!['list'][index]['dt_txt']}")
-                                              .format('EEE')),
-                                          Text(
-                                              "${forecastMap!['list'][index]['main']['temp']}"),
-                                          Image.network(
-                                              'https://openweathermap.org/img/wn/${forecastMap!['list'][index]['weather'][0]['icon']}@2x.png'),
-                                          Text(
-                                              "${forecastMap!['list'][index]['weather'][0]['main']}"),
-                                        ],
+                                      child: Padding(
+                                        padding: const EdgeInsets.all(8.0),
+                                        child: Column(
+                                          children: [
+                                            Text(
+                                              "${Jiffy("${forecastMap!["list"][index]["dt_txt"]}").format("EEE, h:mm a")}",
+                                              style: TextStyle(fontSize: 15),
+                                            ),
+                                            Text(
+                                                "${(forecastMap!['list'][index]['main']['temp'] - 273.15).toStringAsFixed(1)}"),
+                                            Image.network(
+                                                'https://openweathermap.org/img/wn/${forecastMap!['list'][index]['weather'][0]['icon']}@2x.png'),
+                                            Text(
+                                                "${forecastMap!['list'][index]['weather'][0]['main']}"),
+                                          ],
+                                        ),
                                       ),
                                     ),
                                   )
